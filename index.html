@@ -52,6 +52,39 @@
       return parentDOM
     }
 
+    // fetcher
+    const searchWeather = async (url) => {
+      console.log(">> start search weather. | url:", url);
+
+      try {
+        const res = await fetch(url)
+        if (res.status === 404) {
+          alert("maybe, city not found")
+          return;
+        }
+        if (res.status !== 200) {
+          throw new Error(res.body)
+        }
+
+        // weather obj parser
+        const weatherObj = await res.json()
+        const cityName = selectCityName(weatherObj)
+        const weatherMain = selectWeatherMain(weatherObj)
+        const weatherDescription = selectWeatherDescription(weatherObj)
+        const feelsLike = selectFeelsLike(weatherObj);
+
+        const params = {
+          cityName,
+          weatherMain,
+          weatherDescription,
+          feelsLike,
+        }
+        return params;
+      } catch (err) {
+        console.error("SOMETHING ERROR HAPPEN: ", err);
+      }
+    }
+
     window.addEventListener("DOMContentLoaded", () => {
       // DOMs
       const inputDOM = document.querySelector('.input');
@@ -61,53 +94,27 @@
       // mut params
       let lastSearchedUrl = getWeatherUrl(defaultCityName);
 
-      const searchWeather = async (url) => {
-        console.log(">> start search weather. | url:", url);
+      // helper
+      const doSearchAndRender = async (url) => {
+        const params = await searchWeather(url)
+        if (!params) return;
 
-        try {
-          const res = await fetch(url)
-          if (res.status === 404) {
-            alert("maybe, city not found")
-            return;
-          }
-          if (res.status !== 200) {
-            throw new Error(res.body)
-          }
-
-          // weather obj parser
-          const weatherObj = await res.json()
-          const cityName = selectCityName(weatherObj)
-          const weatherMain = selectWeatherMain(weatherObj)
-          const weatherDescription = selectWeatherDescription(weatherObj)
-          const feelsLike = selectFeelsLike(weatherObj);
-
-          // rendering
-          const params = {
-            cityName,
-            weatherMain,
-            weatherDescription,
-            feelsLike,
-          }
-          render(descriptionDOM, params)
-
-          lastSearchedUrl = url;
-        } catch (err) {
-          console.error("SOMETHING ERROR HAPPEN: ", err);
-        }
+        render(descriptionDOM, params)
+        lastSearchedUrl = url;
       }
 
       const init = () => {
-        buttonDOM.addEventListener('click', () => {
+        buttonDOM.addEventListener('click', async () => {
           const maybeCityName = inputDOM.value
           const url = getWeatherUrl(maybeCityName);
-          searchWeather(url)
+          doSearchAndRender(url)
         })
 
         setInterval(() => {
           searchWeather(lastSearchedUrl);
         }, RETRY_DURATION_MILLISECOND)
 
-        searchWeather(getWeatherUrl(defaultCityName))
+        doSearchAndRender(getWeatherUrl(defaultCityName))
       }
 
       init();
