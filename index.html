@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    "use strict"
+    const API_KEY = "b2b86779f50b9bf6a8c0808905029f25"
+
+    // APIs
+    const PREFIX_URL = "https://api.openweathermap.org/data/2.5/"
+    const SUFFIX_URL = `&appid=${API_KEY}`;
+    const getWeatherUrl = (cityName) => PREFIX_URL + `weather?q=${cityName}` + SUFFIX_URL
+
+    // Weather Object
+    const selectWeatherMain = weatherObj => weatherObj.weather[0].main
+    const selectWeatherDescription = weatherObj => weatherObj.weather[0].description
+    const selectFeelsLike = weatherObj => weatherObj.main?.feels_like
+
+    // DOM manipulator
+    const render = (parentDOM, { weatherMain, weatherDescription, feelsLike }) => {
+      parentDOM.innerHTML = ""
+
+      // weatherMain
+      const weatherMainDOM = document.createElement('li')
+      weatherMainDOM.innerHTML = weatherMain
+      parentDOM.appendChild(weatherMainDOM);
+
+      // weatherMain
+      const weatherDescriptionDOM = document.createElement('li')
+      weatherDescriptionDOM.innerHTML = weatherDescription
+      parentDOM.appendChild(weatherDescriptionDOM);
+
+      // feel like
+      const feelLikeDOM = document.createElement('li')
+      feelLikeDOM.innerHTML = feelsLike
+      parentDOM.appendChild(feelLikeDOM);
+
+      return parentDOM
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const inputDOM = document.querySelector('.input');
+      const buttonDOM = document.querySelector('.button');
+      const descriptionDOM = document.querySelector('.description');
+
+      const searchWeather = (url) => {
+        fetch(url)
+          .then(res => {
+            if (res.status === 404) {
+              alert("maybe, city not found")
+              return;
+            }
+            if (res.status !== 200) {
+              throw new Error(res.body)
+            }
+
+            res.json().then(weatherObj => {
+              const weatherMain = selectWeatherMain(weatherObj)
+              const weatherDescription = selectWeatherDescription(weatherObj)
+              const feelsLike = selectFeelsLike(weatherObj);
+
+              render(descriptionDOM, { weatherMain, weatherDescription, feelsLike })
+            });
+          })
+          .catch(err => {
+            console.error("SOMETHING ERROR HAPPEN: ", err);
+          })
+      }
+
+      buttonDOM.addEventListener('click', () => {
+        const maybeCityName = inputDOM.value
+        const url = getWeatherUrl(maybeCityName);
+        searchWeather(url)
+      })
+    });
+
+
+
+  </script>
+</head>
+
+<body>
+  <input class="input" />
+  <button class="button">Search</button>
+  <div class="description"></div>
+
+</body>
+
+</html>
