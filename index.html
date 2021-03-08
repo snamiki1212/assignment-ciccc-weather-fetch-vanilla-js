@@ -33,7 +33,7 @@
         })
 
         setInterval(() => {
-          searchWeather(lastSearchedCityName);
+          doSearchAndRender(lastSearchedCityName);
         }, RETRY_DURATION_MILLISECOND)
 
         doSearchAndRender(DEFAULT_CITY_NAME)
