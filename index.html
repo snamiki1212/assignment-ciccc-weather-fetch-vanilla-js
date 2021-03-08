@@ -5,8 +5,9 @@
   <script>
     "use strict"
     // options
+    const defaultCityName = 'vancouver';
     const API_KEY = "b2b86779f50b9bf6a8c0808905029f25"
-    const RETRY_DURATION_MILLISECOND = 1_000 * 10 * 1_000_000;
+    const RETRY_DURATION_MILLISECOND = 1_000 * 60 * 2;
 
     // APIs
     const PREFIX_URL = "https://api.openweathermap.org/data/2.5/"
@@ -17,24 +18,30 @@
     const selectWeatherMain = weatherObj => weatherObj.weather[0].main
     const selectWeatherDescription = weatherObj => weatherObj.weather[0].description
     const selectFeelsLike = weatherObj => weatherObj.main?.feels_like
+    const selectCityName = weatherObj => weatherObj.name;
 
     // DOM manipulator
-    const render = (parentDOM, { weatherMain, weatherDescription, feelsLike }) => {
+    const render = (parentDOM, { cityName, weatherMain, weatherDescription, feelsLike }) => {
       parentDOM.innerHTML = ""
 
       // weatherMain
+      const cityNameDOM = document.createElement('li')
+      cityNameDOM.innerHTML = `cityName: ${cityName}`
+      parentDOM.appendChild(cityNameDOM);
+
+      // weatherMain
       const weatherMainDOM = document.createElement('li')
-      weatherMainDOM.innerHTML = weatherMain
+      weatherMainDOM.innerHTML = `weatherMain: ${weatherMain}`
       parentDOM.appendChild(weatherMainDOM);
 
       // weatherMain
       const weatherDescriptionDOM = document.createElement('li')
-      weatherDescriptionDOM.innerHTML = weatherDescription
+      weatherDescriptionDOM.innerHTML = `weatherDescription: ${weatherDescription}`
       parentDOM.appendChild(weatherDescriptionDOM);
 
       // feel like
       const feelLikeDOM = document.createElement('li')
-      feelLikeDOM.innerHTML = feelsLike
+      feelLikeDOM.innerHTML = `feelsLike: ${feelsLike}`
       parentDOM.appendChild(feelLikeDOM);
 
       // meta
@@ -51,57 +58,70 @@
       const buttonDOM = document.querySelector('.button');
       const descriptionDOM = document.querySelector('.description');
 
-      // params
-      const defaultCityName = 'vancouver';
+      // mut params
       let lastSearchedUrl = getWeatherUrl(defaultCityName);
 
-      // intervals
-      setInterval(() => {
-        searchWeather(lastSearchedUrl);
-      }, RETRY_DURATION_MILLISECOND)
-
-      const searchWeather = (url) => {
+      const searchWeather = async (url) => {
         console.log(">> start search weather. | url:", url);
 
-        fetch(url)
-          .then(res => {
-            if (res.status === 404) {
-              alert("maybe, city not found")
-              return;
-            }
-            if (res.status !== 200) {
-              throw new Error(res.body)
-            }
+        try {
+          const res = await fetch(url)
+          if (res.status === 404) {
+            alert("maybe, city not found")
+            return;
+          }
+          if (res.status !== 200) {
+            throw new Error(res.body)
+          }
 
-            res.json().then(weatherObj => {
-              const weatherMain = selectWeatherMain(weatherObj)
-              const weatherDescription = selectWeatherDescription(weatherObj)
-              const feelsLike = selectFeelsLike(weatherObj);
+          // weather obj parser
+          const weatherObj = await res.json()
+          const cityName = selectCityName(weatherObj)
+          const weatherMain = selectWeatherMain(weatherObj)
+          const weatherDescription = selectWeatherDescription(weatherObj)
+          const feelsLike = selectFeelsLike(weatherObj);
 
-              render(descriptionDOM, { weatherMain, weatherDescription, feelsLike })
-              lastSearchedUrl = url;
-            });
-          })
-          .catch(err => {
-            console.error("SOMETHING ERROR HAPPEN: ", err);
-          })
+          // rendering
+          const params = {
+            cityName,
+            weatherMain,
+            weatherDescription,
+            feelsLike,
+          }
+          render(descriptionDOM, params)
+
+          lastSearchedUrl = url;
+        } catch (err) {
+          console.error("SOMETHING ERROR HAPPEN: ", err);
+        }
       }
 
-      buttonDOM.addEventListener('click', () => {
-        const maybeCityName = inputDOM.value
-        const url = getWeatherUrl(maybeCityName);
-        searchWeather(url)
-      })
+      const init = () => {
+        buttonDOM.addEventListener('click', () => {
+          const maybeCityName = inputDOM.value
+          const url = getWeatherUrl(maybeCityName);
+          searchWeather(url)
+        })
+
+        setInterval(() => {
+          searchWeather(lastSearchedUrl);
+        }, RETRY_DURATION_MILLISECOND)
+
+        searchWeather(getWeatherUrl(defaultCityName))
+      }
+
+      init();
     });
 
   </script>
 </head>
 
 <body>
-  <input class="input" />
+  <input class="input" placeholder="e.g. Vancouver" />
   <button class="button">Search</button>
-  <div class="description"></div>
-
+  <div class="description">
+    <!-- REPLACE_ME_BY_JS -->
+  </div>
 </body>
 
 </html>
