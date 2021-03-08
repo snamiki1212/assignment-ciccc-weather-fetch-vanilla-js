@@ -1,3 +1,7 @@
+---
+permalink: /index.html
+---
+
 ## Tasks
 
 1. Use the Fetch API to fetch the data from Open Weather API (https://home.openweathermap.org/users/sign_in)
