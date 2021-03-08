@@ -28,8 +28,7 @@
 
       const init = () => {
         buttonDOM.addEventListener('click', async () => {
-          const maybeCityName = inputDOM.value
-          doSearchAndRender(maybeCityName)
+          doSearchAndRender(inputDOM.value)
         })
 
         setInterval(() => {

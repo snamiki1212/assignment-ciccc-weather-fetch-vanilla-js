@@ -3,10 +3,10 @@ export const DEFAULT_CITY_NAME = "vancouver";
 const API_KEY = "b2b86779f50b9bf6a8c0808905029f25";
 
 // APIs
-const PREFIX_URL = "https://api.openweathermap.org/data/2.5/";
+const PREFIX_URL = "https://api.openweathermap.org/data/2.5";
 const SUFFIX_URL = `&appid=${API_KEY}`;
 const getWeatherUrl = (cityName) =>
-  PREFIX_URL + `weather?q=${cityName}` + SUFFIX_URL;
+  PREFIX_URL + `/weather?q=${cityName}` + SUFFIX_URL;
 
 // Weather Object
 const selectWeatherMain = (weatherObj) => weatherObj.weather[0].main;
@@ -37,13 +37,12 @@ export const searchWeather = async (cityName) => {
     const weatherDescription = selectWeatherDescription(weatherObj);
     const feelsLike = selectFeelsLike(weatherObj);
 
-    const params = {
+    return {
       cityName,
       weatherMain,
       weatherDescription,
       feelsLike,
     };
-    return params;
   } catch (err) {
     console.error("SOMETHING ERROR HAPPEN: ", err);
   }
