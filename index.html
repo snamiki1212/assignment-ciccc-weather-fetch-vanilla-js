@@ -4,9 +4,7 @@
 <head>
   <script type="module">
     import { render } from './scripts/dom.js'
-
-    // TODO: refactor: not to public getWeatherUrl
-    import { searchWeather, getWeatherUrl, DEFAULT_CITY_NAME } from './scripts/weatherAPI.js'
+    import { searchWeather, DEFAULT_CITY_NAME } from './scripts/weatherAPI.js'
 
     const RETRY_DURATION_MILLISECOND = 1_000 * 60 * 2;
 
@@ -17,29 +15,28 @@
       const descriptionDOM = document.querySelector('.description');
 
       // mut params
-      let lastSearchedUrl = getWeatherUrl(DEFAULT_CITY_NAME);
+      let lastSearchedCityName = DEFAULT_CITY_NAME;
 
       // helper
-      const doSearchAndRender = async (url) => {
-        const params = await searchWeather(url)
+      const doSearchAndRender = async (cityName) => {
+        const params = await searchWeather(cityName)
         if (!params) return;
 
         render(descriptionDOM, params)
-        lastSearchedUrl = url;
+        lastSearchedCityName = cityName;
       }
 
       const init = () => {
         buttonDOM.addEventListener('click', async () => {
           const maybeCityName = inputDOM.value
-          const url = getWeatherUrl(maybeCityName);
-          doSearchAndRender(url)
+          doSearchAndRender(maybeCityName)
         })
 
         setInterval(() => {
-          searchWeather(lastSearchedUrl);
+          searchWeather(lastSearchedCityName);
         }, RETRY_DURATION_MILLISECOND)
 
-        doSearchAndRender(getWeatherUrl(DEFAULT_CITY_NAME))
+        doSearchAndRender(DEFAULT_CITY_NAME)
       }
 
       init();

@@ -5,7 +5,7 @@ const API_KEY = "b2b86779f50b9bf6a8c0808905029f25";
 // APIs
 const PREFIX_URL = "https://api.openweathermap.org/data/2.5/";
 const SUFFIX_URL = `&appid=${API_KEY}`;
-export const getWeatherUrl = (cityName) =>
+const getWeatherUrl = (cityName) =>
   PREFIX_URL + `weather?q=${cityName}` + SUFFIX_URL;
 
 // Weather Object
@@ -16,8 +16,9 @@ const selectFeelsLike = (weatherObj) => weatherObj.main?.feels_like;
 const selectCityName = (weatherObj) => weatherObj.name;
 
 // fetcher
-export const searchWeather = async (url) => {
-  console.log(">> start search weather. | url:", url);
+export const searchWeather = async (cityName) => {
+  console.log(">> start search weather. | city name:", cityName);
+  const url = getWeatherUrl(cityName);
 
   try {
     const res = await fetch(url);
