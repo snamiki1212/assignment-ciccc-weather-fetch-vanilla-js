@@ -4,7 +4,9 @@
 <head>
   <script>
     "use strict"
+    // options
     const API_KEY = "b2b86779f50b9bf6a8c0808905029f25"
+    const RETRY_DURATION_MILLISECOND = 1_000 * 10 * 1_000_000;
 
     // APIs
     const PREFIX_URL = "https://api.openweathermap.org/data/2.5/"
@@ -35,15 +37,32 @@
       feelLikeDOM.innerHTML = feelsLike
       parentDOM.appendChild(feelLikeDOM);
 
+      // meta
+      const lastUpdatedDOM = document.createElement('li')
+      lastUpdatedDOM.innerHTML = `last updated: ${(new Date().toISOString())}`
+      parentDOM.appendChild(lastUpdatedDOM);
+
       return parentDOM
     }
 
     window.addEventListener("DOMContentLoaded", () => {
+      // DOMs
       const inputDOM = document.querySelector('.input');
       const buttonDOM = document.querySelector('.button');
       const descriptionDOM = document.querySelector('.description');
 
+      // params
+      const defaultCityName = 'vancouver';
+      let lastSearchedUrl = getWeatherUrl(defaultCityName);
+
+      // intervals
+      setInterval(() => {
+        searchWeather(lastSearchedUrl);
+      }, RETRY_DURATION_MILLISECOND)
+
       const searchWeather = (url) => {
+        console.log(">> start search weather. | url:", url);
+
         fetch(url)
           .then(res => {
             if (res.status === 404) {
@@ -60,6 +79,7 @@
               const feelsLike = selectFeelsLike(weatherObj);
 
               render(descriptionDOM, { weatherMain, weatherDescription, feelsLike })
+              lastSearchedUrl = url;
             });
           })
           .catch(err => {
@@ -73,8 +93,6 @@
         searchWeather(url)
       })
     });
-
-
 
   </script>
 </head>
