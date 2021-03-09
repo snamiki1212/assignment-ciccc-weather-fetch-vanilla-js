@@ -32,10 +32,24 @@ const searchWeather = async (cityName: string) => {
   }
 };
 
+const useWeather = () => {
+  const [weather, setWeather] = React.useState<Weather | undefined>();
+
+  const doSearchWeather = React.useCallback((cityName: string) => {
+    searchWeather(cityName).then((weatherObj) => {
+      console.log("[after search]");
+      if (!weatherObj) return;
+      setWeather(weatherObj);
+    });
+  }, []);
+
+  return { weather, doSearchWeather };
+};
+
 export function Card() {
   // TODO: not using useState but to handle using useRef because of reducing re-rendering
   const [inputed, setInputed] = React.useState<string>("vancouver");
-  const [weather, setWeather] = React.useState<Weather | undefined>();
+  const { weather, doSearchWeather } = useWeather();
 
   const handleChange = React.useCallback((event) => {
     setInputed(event.target.value);
@@ -43,24 +57,17 @@ export function Card() {
 
   const handleClick = React.useCallback(() => {
     const cityName = "tokyo"; // TODO:
-    searchWeather(cityName).then((weatherObj) => {
-      console.log("[after search]");
-      if (!weatherObj) return;
-      setWeather(weatherObj);
-    });
-  }, []);
+    doSearchWeather(cityName);
+  }, [doSearchWeather]);
 
   React.useEffect(() => {
     console.log("[useEffect]");
     const cityName = "tokyo"; // TODO:
-    searchWeather(cityName).then((weatherObj) => {
-      console.log("[after search]");
-      if (!weatherObj) return;
-      setWeather(weatherObj);
-    });
-  }, []);
+    doSearchWeather(cityName);
+  }, [doSearchWeather]);
 
   if (!weather) return <div></div>;
+
   return (
     <div>
       <input onChange={handleChange} value={inputed} />
