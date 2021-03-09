@@ -36,7 +36,7 @@ export const useWeather = () => {
   const [weather, setWeather] = React.useState<Weather | undefined>();
 
   const searchWeather = React.useCallback((cityName = DEFAULT_CITY_NAME) => {
-    doSearchWeather(cityName).then((weatherObj) => {
+    return doSearchWeather(cityName).then((weatherObj) => {
       console.log("[after search]");
       if (!weatherObj) return;
       setWeather(weatherObj);
