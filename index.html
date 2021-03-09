@@ -15,28 +15,31 @@
       const buttonDOM = document.querySelector('.button');
       const descriptionDOM = document.querySelector('.description');
 
-      // mut params
+      // mutate params
       let lastSearchedCityName = DEFAULT_CITY_NAME;
+      let intervalHander;
 
-      // helper
+      // helpers
       const doSearchAndRender = async (cityName) => {
         const params = await searchWeather(cityName)
         if (!params) return;
-
         render(descriptionDOM, params)
         lastSearchedCityName = cityName;
       }
 
+      const doSetInterval = () => setInterval(() => {
+        doSearchAndRender(lastSearchedCityName);
+      }, RETRY_DURATION_MILLISECOND)
+
       const init = () => {
+        doSearchAndRender(DEFAULT_CITY_NAME)
+        intervalHander = doSetInterval()
+
         buttonDOM.addEventListener('click', async () => {
           doSearchAndRender(inputDOM.value)
+          if (intervalHander) clearInterval(intervalHander)
+          intervalHander = doSetInterval()
         })
-
-        setInterval(() => {
-          doSearchAndRender(lastSearchedCityName);
-        }, RETRY_DURATION_MILLISECOND)
-
-        doSearchAndRender(DEFAULT_CITY_NAME)
       }
 
       init();
