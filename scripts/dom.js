@@ -5,7 +5,7 @@ export const render = (
 ) => {
   parentDOM.innerHTML = "";
 
-  // weatherMain
+  // cityName
   const cityNameDOM = document.createElement("li");
   cityNameDOM.innerHTML = `cityName: ${cityName}`;
   parentDOM.appendChild(cityNameDOM);
@@ -15,12 +15,12 @@ export const render = (
   weatherMainDOM.innerHTML = `weatherMain: ${weatherMain}`;
   parentDOM.appendChild(weatherMainDOM);
 
-  // weatherMain
+  // weatherDescription
   const weatherDescriptionDOM = document.createElement("li");
   weatherDescriptionDOM.innerHTML = `weatherDescription: ${weatherDescription}`;
   parentDOM.appendChild(weatherDescriptionDOM);
 
-  // feel like
+  // feels like
   const feelLikeDOM = document.createElement("li");
   feelLikeDOM.innerHTML = `feelsLike: ${feelsLike}`;
   parentDOM.appendChild(feelLikeDOM);
