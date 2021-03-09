@@ -11,7 +11,7 @@ const SUFFIX_URL = `&appid=${API_KEY}`;
 const getWeatherUrl = (cityName: string) =>
   PREFIX_URL + `/weather?q=${cityName}` + SUFFIX_URL;
 
-const searchWeather = async (cityName: string) => {
+const doSearchWeather = async (cityName: string) => {
   const url = getWeatherUrl(cityName);
 
   try {
@@ -35,13 +35,13 @@ const searchWeather = async (cityName: string) => {
 export const useWeather = () => {
   const [weather, setWeather] = React.useState<Weather | undefined>();
 
-  const doSearchWeather = React.useCallback((cityName = DEFAULT_CITY_NAME) => {
-    searchWeather(cityName).then((weatherObj) => {
+  const searchWeather = React.useCallback((cityName = DEFAULT_CITY_NAME) => {
+    doSearchWeather(cityName).then((weatherObj) => {
       console.log("[after search]");
       if (!weatherObj) return;
       setWeather(weatherObj);
     });
   }, []);
 
-  return { weather, doSearchWeather };
+  return { weather, searchWeather };
 };

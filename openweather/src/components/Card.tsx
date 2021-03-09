@@ -4,7 +4,7 @@ import { useWeather } from "../hooks/useWeather";
 export function Card() {
   // TODO: not using useState but to handle using useRef because of reducing re-rendering
   const [inputed, setInputed] = React.useState<string>("vancouver");
-  const { weather, doSearchWeather } = useWeather();
+  const { weather, searchWeather } = useWeather();
 
   const handleChange = React.useCallback((event) => {
     setInputed(event.target.value);
@@ -12,13 +12,13 @@ export function Card() {
 
   const handleClick = React.useCallback(() => {
     console.log("[handleClick]");
-    doSearchWeather(inputed);
-  }, [inputed, doSearchWeather]);
+    searchWeather(inputed);
+  }, [inputed, searchWeather]);
 
   React.useEffect(() => {
     console.log("[useEffect]");
-    doSearchWeather();
-  }, [doSearchWeather]);
+    searchWeather();
+  }, [searchWeather]);
 
   if (!weather) return <div></div>;
 
