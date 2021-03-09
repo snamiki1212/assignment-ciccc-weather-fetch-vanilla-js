@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="style.css" />
   <script type="module">
     import { render } from './scripts/dom.js'
     import { searchWeather, DEFAULT_CITY_NAME } from './scripts/weatherAPI.js'
@@ -45,6 +46,12 @@
 </head>
 
 <body>
+  <nav>
+    <li><a href="index.html">TOP</a></li>
+    <li><a href="current.html">CURRENT</a></li>
+    <li><a href="forecast.html">FORECAST</a></li>
+  </nav>
+
   <input class="input" placeholder="e.g. Vancouver" />
   <button class="button">Search</button>
   <div class="description">
