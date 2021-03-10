@@ -1,6 +1,7 @@
 import React from "react";
 import { WeatherCard } from "./WeatherCard";
 import { useWeather } from "../hooks/useWeather";
+import { useToggle } from "../hooks/useToggle";
 
 // TODO: modifable input
 const RETRY_DURATION_MILLISECOND = 1_000 * 2 * 60;
@@ -23,12 +24,7 @@ export function Page() {
     searchWeather(inputed).then(() => setLastSearchedCityName(inputed));
   }, [inputed, searchWeather]);
 
-  // TODO: create useToggle
-  const [toggle, setToggle] = React.useState<boolean>(true);
-  const handleToggle = React.useCallback(() => {
-    setToggle((prev) => !prev);
-  }, []);
-  //
+  const { on, toggle: handleToggle } = useToggle();
 
   React.useEffect(() => {
     console.log("[useEffect:initial-load-feature]");
@@ -48,7 +44,7 @@ export function Page() {
   return (
     <div>
       <div>
-        <input type="checkbox" onChange={handleToggle} checked={toggle} />
+        <input type="checkbox" onChange={handleToggle} checked={on} />
         <span>Auto fetch</span>
       </div>
 
