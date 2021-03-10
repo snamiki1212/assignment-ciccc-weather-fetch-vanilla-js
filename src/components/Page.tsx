@@ -31,13 +31,19 @@ export function Page() {
     searchWeather();
   }, [searchWeather]);
 
+  const doSearchWeather = React.useCallback(() => {
+    searchWeather(lastSearchedCityName);
+  }, [searchWeather, lastSearchedCityName]);
+
   React.useEffect(() => {
     console.log("[useEffect:interval-feature]");
-    const handleInterval = setInterval(() => {
-      searchWeather(lastSearchedCityName);
-    }, RETRY_DURATION_MILLISECOND);
+    if (!on) return;
+    const handleInterval = setInterval(
+      doSearchWeather,
+      RETRY_DURATION_MILLISECOND
+    );
     return () => clearInterval(handleInterval);
-  }, [searchWeather, lastSearchedCityName]);
+  }, [on, doSearchWeather]);
 
   if (!weather) return <div></div>;
 
