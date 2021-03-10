@@ -1,6 +1,6 @@
 import React from "react";
 import { WeatherCard } from "../WeatherCard";
-import { useWeather } from "../../hooks/useWeather";
+import { useCurrentWeather } from "../../hooks/useCurrentWeather";
 import { useToggle } from "../../hooks/useToggle";
 
 // TODO: modifable input
@@ -13,7 +13,7 @@ export function CurrentPage() {
     lastSearchedCityName,
     setLastSearchedCityName,
   ] = React.useState<string>(inputed);
-  const { weather, searchWeather } = useWeather();
+  const { weather, searchWeather } = useCurrentWeather();
 
   const handleChange = React.useCallback((event) => {
     setInputed(event.target.value);
@@ -31,7 +31,7 @@ export function CurrentPage() {
     searchWeather();
   }, [searchWeather]);
 
-  const doSearchWeather = React.useCallback(() => {
+  const searchCurrentWeather = React.useCallback(() => {
     searchWeather(lastSearchedCityName);
   }, [searchWeather, lastSearchedCityName]);
 
@@ -39,11 +39,11 @@ export function CurrentPage() {
     console.log("[useEffect:interval-feature]");
     if (!on) return;
     const handleInterval = setInterval(
-      doSearchWeather,
+      searchCurrentWeather,
       RETRY_DURATION_MILLISECOND
     );
     return () => clearInterval(handleInterval);
-  }, [on, doSearchWeather]);
+  }, [on, searchCurrentWeather]);
 
   if (!weather) return <div></div>;
 

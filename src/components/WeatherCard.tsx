@@ -1,7 +1,7 @@
 import React from "react";
-import { Weather } from "../types";
+import { CurrentWeather } from "../types";
 
-type Props = { weather: Weather };
+type Props = { weather: CurrentWeather };
 
 export function WeatherCard({ weather }: Props) {
   return (
