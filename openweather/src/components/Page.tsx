@@ -4,7 +4,7 @@ import { useWeather } from "../hooks/useWeather";
 // TODO: modifable input
 const RETRY_DURATION_MILLISECOND = 1_000 * 2 * 60;
 
-export function Card() {
+export function Page() {
   // TODO: not using useState but to handle using useRef because of reducing re-rendering
   const [inputed, setInputed] = React.useState<string>("vancouver");
   const [
