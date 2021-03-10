@@ -1,4 +1,5 @@
 import React from "react";
+import { WeatherCard } from "./WeatherCard";
 import { useWeather } from "../hooks/useWeather";
 
 // TODO: modifable input
@@ -54,8 +55,7 @@ export function Page() {
       <div>
         <input onChange={handleChange} value={inputed} />
         <button onClick={handleClick}>Search</button>
-        <div>name: {weather.name}</div>
-        <div>description: {weather.weather[0]?.description}</div>
+        <WeatherCard weather={weather} />
       </div>
     </div>
   );
