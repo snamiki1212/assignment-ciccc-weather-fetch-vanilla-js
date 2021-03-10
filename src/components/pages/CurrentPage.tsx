@@ -1,7 +1,7 @@
 import React from "react";
-import { WeatherCard } from "./WeatherCard";
-import { useWeather } from "../hooks/useWeather";
-import { useToggle } from "../hooks/useToggle";
+import { WeatherCard } from "../WeatherCard";
+import { useWeather } from "../../hooks/useWeather";
+import { useToggle } from "../../hooks/useToggle";
 
 // TODO: modifable input
 const RETRY_DURATION_MILLISECOND = 1_000 * 2 * 60;
