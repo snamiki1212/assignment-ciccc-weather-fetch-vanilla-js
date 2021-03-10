@@ -6,7 +6,7 @@ import { useToggle } from "../hooks/useToggle";
 // TODO: modifable input
 const RETRY_DURATION_MILLISECOND = 1_000 * 2 * 60;
 
-export function Page() {
+export function CurrentPage() {
   // TODO: not using useState but to handle using useRef because of reducing re-rendering
   const [inputed, setInputed] = React.useState<string>("vancouver");
   const [
