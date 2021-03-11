@@ -35,12 +35,12 @@ export function Navigation() {
           >
             <Logo />
           </Link>
-          <Button bg={"pink.100"} _hover={{ bg: "pink.50" }}>
-            <Link
-              as={ReactRouterLink}
-              to={PATH.forecast}
-              _hover={{ textDecoration: "none" }}
-            >
+          <Link
+            as={ReactRouterLink}
+            to={PATH.forecast}
+            _hover={{ textDecoration: "none" }}
+          >
+            <Button bg={"pink.100"} _hover={{ bg: "pink.50" }}>
               <Text
                 bgClip="text"
                 bgGradient="linear(to-l, #7928CA, #FF0080)"
@@ -48,14 +48,14 @@ export function Navigation() {
               >
                 Forecast
               </Text>
-            </Link>
-          </Button>
-          <Button bg={"pink.100"} _hover={{ bg: "pink.50" }}>
-            <Link
-              as={ReactRouterLink}
-              to={PATH.current}
-              _hover={{ textDecoration: "none" }}
-            >
+            </Button>
+          </Link>
+          <Link
+            as={ReactRouterLink}
+            to={PATH.current}
+            _hover={{ textDecoration: "none" }}
+          >
+            <Button bg={"pink.100"} _hover={{ bg: "pink.50" }}>
               <Text
                 bgClip="text"
                 bgGradient="linear(to-l, #7928CA, #FF0080)"
@@ -63,8 +63,8 @@ export function Navigation() {
               >
                 Current
               </Text>
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </HStack>
         <Flex alignItems="center">
           <Link href={THIS_GITHUB} _hover={{ textDecoration: "none" }}>
