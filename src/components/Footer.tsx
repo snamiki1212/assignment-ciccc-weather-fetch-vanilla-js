@@ -1,0 +1,34 @@
+import React from "react";
+import { Box, Flex, Text } from "@chakra-ui/react";
+import { Logo } from "./Logo";
+
+export function Footer() {
+  return (
+    <div>
+      <Box py={10} bg="pink.50">
+        <Flex
+          align={"center"}
+          _before={{
+            content: '""',
+            borderBottom: "1px solid",
+            borderColor: "gray.50",
+            flexGrow: 1,
+            mr: 8,
+          }}
+          _after={{
+            content: '""',
+            borderBottom: "1px solid",
+            borderColor: "gray.50",
+            flexGrow: 1,
+            ml: 8,
+          }}
+        >
+          <Logo />
+        </Flex>
+        <Text pt={6} fontSize={"sm"} textAlign={"center"}>
+          © 2021 Shun Namiki
+        </Text>
+      </Box>
+    </div>
+  );
+}

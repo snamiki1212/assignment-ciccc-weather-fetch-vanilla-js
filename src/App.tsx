@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PATH } from "./constants";
 import { Navigation } from "./components/Navigation";
+import { Footer } from "./components/Footer";
 import { CurrentPage } from "./components/pages/CurrentPage";
 import { ForecastPage } from "./components/pages/ForecastPage";
 import { HomePage } from "./components/pages/HomePage";
@@ -12,7 +13,6 @@ function App() {
     <ChakraProvider>
       <Router>
         <Navigation />
-
         <Switch>
           <Route path={PATH.current}>
             <CurrentPage />
@@ -24,6 +24,7 @@ function App() {
             <HomePage />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </ChakraProvider>
   );

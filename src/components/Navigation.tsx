@@ -1,4 +1,5 @@
 import React from "react";
+import { Logo } from "./Logo";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { PATH } from "../constants";
 import {
@@ -32,14 +33,7 @@ export function Navigation() {
             to={PATH.home}
             _hover={{ textDecoration: "none" }}
           >
-            <Text
-              bgClip="text"
-              bgGradient="linear(to-l, #7928CA, #FF0080)"
-              fontSize="3xl"
-              fontWeight="extrabold"
-            >
-              OpenWeatherApp
-            </Text>
+            <Logo />
           </Link>
           <Button bg={"pink.50"} _hover={{ bg: "pink.100" }}>
             <Link
