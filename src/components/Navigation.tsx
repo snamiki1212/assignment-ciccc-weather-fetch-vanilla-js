@@ -25,7 +25,7 @@ const MY_AVATOR =
 
 export function Navigation() {
   return (
-    <Box p={2} bg={"pink.50"}>
+    <Box p={2} bg={"pink.100"}>
       <Flex justifyContent="space-between">
         <HStack as={"nav"} spacing={7}>
           <Link

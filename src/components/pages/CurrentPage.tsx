@@ -2,6 +2,7 @@ import React from "react";
 import { WeatherCard } from "../WeatherCard";
 import { useCurrentWeather } from "../../hooks/useCurrentWeather";
 import { useToggle } from "../../hooks/useToggle";
+import { Box } from "@chakra-ui/react";
 
 // TODO: modifable input
 const RETRY_DURATION_MILLISECOND = 1_000 * 2 * 60;
@@ -48,7 +49,7 @@ export function CurrentPage() {
   if (!weather) return <div></div>;
 
   return (
-    <div>
+    <Box bg="gray.50">
       <div>
         <input type="checkbox" onChange={handleToggle} checked={on} />
         <span>Auto fetch</span>
@@ -59,6 +60,6 @@ export function CurrentPage() {
         <button onClick={handleClick}>Search</button>
         <WeatherCard weather={weather} />
       </div>
-    </div>
+    </Box>
   );
 }
