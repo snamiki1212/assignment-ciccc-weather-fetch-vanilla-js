@@ -1,7 +1,7 @@
 import React from "react";
 import { fetchForecastWeather } from "../../api/weather";
 import { ForecastWeather } from "../../types";
-import { ForecastList } from "../ForecastList";
+import { ForecastSection } from "../forecast/ForecastSection";
 
 import {
   NumberInput,
@@ -109,7 +109,7 @@ export function ForecastPage() {
           <Spinner color="pink" />
         </Box>
       ) : (
-        <ForecastList forecast={forecast} />
+        <ForecastSection forecast={forecast} />
       )}
     </Stack>
   );
