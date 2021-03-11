@@ -1,7 +1,7 @@
 import React from "react";
 import { Logo } from "./Logo";
 import { Link as ReactRouterLink } from "react-router-dom";
-import { PATH } from "../../constants";
+import { PATH, SNS } from "../../constants";
 import {
   Box,
   Flex,
@@ -15,13 +15,6 @@ import {
   MenuList,
   MenuItem,
 } from "@chakra-ui/react";
-
-const THIS_GITHUB =
-  "https://github.com/snamiki1212/assignment-ciccc-weather-fetch-vanilla-js";
-const MY_GITHUB = "https://github.com/snamiki1212";
-const MY_LINKEDIN = "https://www.linkedin.com/in/snamiki1212/";
-const MY_AVATOR =
-  "https://avatars.githubusercontent.com/u/26793088?s=460&u=7cd8858ef043c328a3b729553c5ad81498bd65c4&v=4";
 
 export function Navigation() {
   return (
@@ -67,20 +60,20 @@ export function Navigation() {
           </Link>
         </HStack>
         <Flex alignItems="center">
-          <Link href={THIS_GITHUB} _hover={{ textDecoration: "none" }}>
+          <Link href={SNS.THIS_GITHUB} _hover={{ textDecoration: "none" }}>
             <Button bg="pink.400" color="white" _hover={{ bg: "pink.300" }}>
               GitHub
             </Button>
           </Link>
           <Menu>
             <MenuButton as={Button} variant={"link"} cursor={"pointer"}>
-              <Avatar size="sm" src={MY_AVATOR} />
+              <Avatar size="sm" src={SNS.MY_AVATOR} />
             </MenuButton>
             <MenuList>
-              <MenuItem as={Link} isExternal href={MY_GITHUB}>
+              <MenuItem as={Link} isExternal href={SNS.MY_GITHUB}>
                 GitHub
               </MenuItem>
-              <MenuItem as={Link} isExternal href={MY_LINKEDIN}>
+              <MenuItem as={Link} isExternal href={SNS.MY_LINKEDIN}>
                 Linkedin
               </MenuItem>
             </MenuList>
