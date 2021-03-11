@@ -1,11 +1,14 @@
 import React from "react";
-import { Icon } from "../shared/Icon";
-import { ForecastWeather } from "../../types";
+import { Icon } from "./Icon";
+import { ForecastWeather, CurrentWeather } from "../../types";
 import { Center, Box, Text } from "@chakra-ui/react";
 
-type Props = { item: ForecastWeather["list"][0] };
-export function ForecastItemCard({ item }: Props) {
-  const _date = new Date(item.dt_txt);
+const createDateFromUnixTime = (dt: number) => new Date(dt * 1_000); // REF: https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
+
+type Props = { item: ForecastWeather["list"][0] | CurrentWeather };
+
+export function WeatherItemCard({ item }: Props) {
+  const _date = createDateFromUnixTime(item.dt);
   const day = _date.toDateString();
   const time = `${String(_date.getHours()).padStart(2, "0")}:${String(
     _date.getMinutes()
@@ -20,7 +23,6 @@ export function ForecastItemCard({ item }: Props) {
         <Box align="center">
           <Text w={130}>{day}</Text>
           <Text>{time}</Text>
-          {/* <Text>{item.main.feels_like}</Text> */}
         </Box>
       </Box>
     </Center>

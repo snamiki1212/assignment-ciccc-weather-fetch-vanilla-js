@@ -97,7 +97,7 @@ export function ForecastPage() {
           bg="pink.600"
           color="white"
           _hover={{
-            bg: "pink.400",
+            bg: "pink.500",
           }}
         >
           Get Forecast

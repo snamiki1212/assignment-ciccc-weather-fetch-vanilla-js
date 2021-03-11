@@ -1,8 +1,8 @@
 import React from "react";
-import { WeatherCard } from "../WeatherCard";
+import { WeatherItemCard } from "../shared/WeatherItemCard";
 import { useCurrentWeather } from "../../hooks/useCurrentWeather";
 import { useToggle } from "../../hooks/useToggle";
-import { Box } from "@chakra-ui/react";
+import { Box, Button, Input, Checkbox, HStack, Text } from "@chakra-ui/react";
 
 // TODO: modifable input
 const RETRY_DURATION_MILLISECOND = 1_000 * 2 * 60;
@@ -49,17 +49,45 @@ export function CurrentPage() {
   if (!weather) return <div></div>;
 
   return (
-    <Box bg="gray.50">
-      <div>
-        <input type="checkbox" onChange={handleToggle} checked={on} />
-        <span>Auto fetch</span>
-      </div>
+    <Box bg="gray.50" p={2}>
+      <Text
+        bgClip="text"
+        bgGradient="linear(to-b, #7928CA, #FF0080)"
+        fontSize="3xl"
+        fontWeight="extrabold"
+      >
+        Current Weather
+      </Text>
+      <Box p={5}>
+        <HStack>
+          <Input onChange={handleChange} value={inputed} />
+          <Button
+            onClick={handleClick}
+            bg="pink.600"
+            color="white"
+            _hover={{
+              bg: "pink.500",
+            }}
+          >
+            Search
+          </Button>
+        </HStack>
+        <Checkbox onChange={handleToggle} isChecked={on}>
+          Auto fetch
+        </Checkbox>
+      </Box>
 
-      <div>
-        <input onChange={handleChange} value={inputed} />
-        <button onClick={handleClick}>Search</button>
-        <WeatherCard weather={weather} />
-      </div>
+      <Box p={10} align="center">
+        <Text
+          bgClip="text"
+          bgGradient="linear(to-b, #7928CA, #FF0080)"
+          fontSize="3xl"
+          fontWeight="extrabold"
+        >
+          {lastSearchedCityName}
+        </Text>
+        <WeatherItemCard item={weather} />
+      </Box>
     </Box>
   );
 }

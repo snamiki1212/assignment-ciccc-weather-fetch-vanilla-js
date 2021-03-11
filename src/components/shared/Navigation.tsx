@@ -68,7 +68,9 @@ export function Navigation() {
         </HStack>
         <Flex alignItems="center">
           <Link href={THIS_GITHUB} _hover={{ textDecoration: "none" }}>
-            <Button>GitHub</Button>
+            <Button bg="pink.400" color="white" _hover={{ bg: "pink.300" }}>
+              GitHub
+            </Button>
           </Link>
           <Menu>
             <MenuButton as={Button} variant={"link"} cursor={"pointer"}>
