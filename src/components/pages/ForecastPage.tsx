@@ -12,6 +12,7 @@ import {
   Button,
   Input,
   Stack,
+  HStack,
   Text,
   Flex,
   Spinner,
@@ -19,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 
 const DEFAULT_NUMBER_OS_DAYS = 7;
-const DEFAULT_CITY_NAME = "tokyo";
+const DEFAULT_CITY_NAME = "Tokyo";
 const MAX_DAYS = 16;
 const isRange = (num: number) => num >= 0 && num <= MAX_DAYS;
 
@@ -66,22 +67,24 @@ export function ForecastPage() {
       >
         Forecast
       </Text>
-      <Stack p={2} m={2} borderRadius={10} borderWidth={1}>
-        <Stack flexDir="row" align="center">
+      <Stack p={10} m={2} borderRadius={10} borderWidth={1}>
+        <HStack align="center" justifyContent="space-between">
           <Text as="label">City Name</Text>
           <Input
             value={cityName}
             onChange={handleChangeCityName}
             placeholder="e.g. Tokyo"
+            width="80%"
           />
-        </Stack>
+        </HStack>
 
-        <Flex flexDir="row" align="center">
+        <HStack align="center" justifyContent="space-between">
           <Text as="label">Days</Text>
           <NumberInput
             value={days}
             onChange={handleChangeDays}
             placeholder="e.g. 0~16"
+            width="80%"
           >
             <NumberInputField />
             <NumberInputStepper>
@@ -89,7 +92,7 @@ export function ForecastPage() {
               <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
-        </Flex>
+        </HStack>
 
         <Button
           onClick={handleClick}
