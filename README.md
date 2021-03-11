@@ -1,6 +1,6 @@
 # assignment-ciccc-weather-fetch-vanilla-js
 
-Weather App through [OpenWeatherMap](https://openweathermap.org/) API using React.
+Weather App with [OpenWeatherMap](https://openweathermap.org/) API created by React / TypeScript / ChakraUI.
 
 - TODO: rename repo name into `assignment-ciccc-react-open-weather-map`
 
