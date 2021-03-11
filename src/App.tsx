@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PATH } from "./constants";
-import { Navigation } from "./components/Navigation";
-import { Footer } from "./components/Footer";
+import { Navigation } from "./components/shared/Navigation";
+import { Footer } from "./components/shared/Footer";
 import { CurrentPage } from "./components/pages/CurrentPage";
 import { ForecastPage } from "./components/pages/ForecastPage";
 import { HomePage } from "./components/pages/HomePage";

@@ -1,7 +1,7 @@
 import React from "react";
 import { Logo } from "./Logo";
 import { Link as ReactRouterLink } from "react-router-dom";
-import { PATH } from "../constants";
+import { PATH } from "../../constants";
 import {
   Box,
   Flex,
