@@ -6,25 +6,33 @@ import { Footer } from "./components/Footer";
 import { CurrentPage } from "./components/pages/CurrentPage";
 import { ForecastPage } from "./components/pages/ForecastPage";
 import { HomePage } from "./components/pages/HomePage";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Flex } from "@chakra-ui/react";
+
+function Body() {
+  return (
+    <Switch>
+      <Route path={PATH.current}>
+        <CurrentPage />
+      </Route>
+      <Route path={PATH.forecast}>
+        <ForecastPage />
+      </Route>
+      <Route path={PATH.home}>
+        <HomePage />
+      </Route>
+    </Switch>
+  );
+}
 
 function App() {
   return (
     <ChakraProvider>
       <Router>
-        <Navigation />
-        <Switch>
-          <Route path={PATH.current}>
-            <CurrentPage />
-          </Route>
-          <Route path={PATH.forecast}>
-            <ForecastPage />
-          </Route>
-          <Route path={PATH.home}>
-            <HomePage />
-          </Route>
-        </Switch>
-        <Footer />
+        <Flex minHeight="100vh" flexDir="column">
+          <Navigation />
+          <Body />
+          <Footer />
+        </Flex>
       </Router>
     </ChakraProvider>
   );
