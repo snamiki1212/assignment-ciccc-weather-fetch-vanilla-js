@@ -24,8 +24,10 @@ export function Footer() {
       >
         <Logo />
       </Flex>
-      <Text pt={6} fontSize={"sm"} textAlign={"center"}>
+      <Text pt={6} fontSize={"sm"} textAlign={"center"} color="pink.700">
         © 2021 Shun Namiki
+        <br />
+        This page is created by React / TypeScript / ChakraUI.
       </Text>
     </Box>
   );
