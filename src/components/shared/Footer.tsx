@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <Box py={10} bg="pink.100" flexGrow={1}>
+    <Box py={10} bg="pink.50" flexGrow={1}>
       <Flex
         align={"center"}
         _before={{

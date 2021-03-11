@@ -51,6 +51,7 @@ export function CurrentPage() {
   return (
     <Box bg="gray.50" p={2}>
       <Text
+        align="center"
         bgClip="text"
         bgGradient="linear(to-b, #7928CA, #FF0080)"
         fontSize="3xl"

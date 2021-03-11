@@ -4,6 +4,7 @@ Weather App with [OpenWeatherMap](https://openweathermap.org/) API created by Re
 
 - TODO: rename repo name into `assignment-ciccc-react-open-weather-map`
 - TODO: Responsive design
+- TODO: Dark mode
 
 ## Installation
 

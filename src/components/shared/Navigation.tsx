@@ -16,11 +16,16 @@ import {
   MenuItem,
 } from "@chakra-ui/react";
 
+const links = [
+  { text: "Current", to: PATH.current },
+  { text: "Forecast", to: PATH.forecast },
+];
+
 export function Navigation() {
   return (
-    <Box p={2} bg={"pink.100"}>
+    <Box p={2} bg={"gray.50"} borderBottomColor="gray.100" borderWidth={1}>
       <Flex justifyContent="space-between">
-        <HStack as={"nav"} spacing={7}>
+        <Box as={"nav"}>
           <Link
             as={ReactRouterLink}
             to={PATH.home}
@@ -28,42 +33,32 @@ export function Navigation() {
           >
             <Logo />
           </Link>
-          <Link
-            as={ReactRouterLink}
-            to={PATH.forecast}
-            _hover={{ textDecoration: "none" }}
-          >
-            <Button bg={"pink.100"} _hover={{ bg: "pink.50" }}>
-              <Text
-                bgClip="text"
-                bgGradient="linear(to-l, #7928CA, #FF0080)"
-                fontWeight="extrabold"
-              >
-                Forecast
-              </Text>
-            </Button>
-          </Link>
-          <Link
-            as={ReactRouterLink}
-            to={PATH.current}
-            _hover={{ textDecoration: "none" }}
-          >
-            <Button bg={"pink.100"} _hover={{ bg: "pink.50" }}>
-              <Text
-                bgClip="text"
-                bgGradient="linear(to-l, #7928CA, #FF0080)"
-                fontWeight="extrabold"
-              >
-                Current
-              </Text>
-            </Button>
-          </Link>
-        </HStack>
+        </Box>
         <Flex alignItems="center">
+          {links.map((link) => (
+            <Link
+              as={ReactRouterLink}
+              to={link.to}
+              _hover={{ textDecoration: "none" }}
+            >
+              <Button
+                bg={"gray.50"}
+                _hover={{
+                  bg: "pink.50",
+                }}
+              >
+                <Text
+                  bgClip="text"
+                  bgGradient="linear(to-l, #7928CA, #FF0080)"
+                  fontWeight="extrabold"
+                >
+                  {link.text}
+                </Text>
+              </Button>
+            </Link>
+          ))}
           <Link href={SNS.THIS_GITHUB} _hover={{ textDecoration: "none" }}>
-            <Button bg="pink.400" color="white" _hover={{ bg: "pink.300" }}>
-              GitHub
-            </Button>
+            <Button color="gray.600">GitHub</Button>
           </Link>
           <Menu>
             <MenuButton as={Button} variant={"link"} cursor={"pointer"}>
