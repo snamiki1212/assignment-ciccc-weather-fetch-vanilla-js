@@ -35,7 +35,7 @@ export function Navigation() {
           >
             <Logo />
           </Link>
-          <Button bg={"pink.50"} _hover={{ bg: "pink.100" }}>
+          <Button bg={"pink.100"} _hover={{ bg: "pink.50" }}>
             <Link
               as={ReactRouterLink}
               to={PATH.forecast}
@@ -50,7 +50,7 @@ export function Navigation() {
               </Text>
             </Link>
           </Button>
-          <Button bg={"pink.50"} _hover={{ bg: "pink.100" }}>
+          <Button bg={"pink.100"} _hover={{ bg: "pink.50" }}>
             <Link
               as={ReactRouterLink}
               to={PATH.current}
