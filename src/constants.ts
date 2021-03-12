@@ -6,7 +6,7 @@ export const PATH = {
 
 export const SNS = {
   THIS_GITHUB:
-    "https://github.com/snamiki1212/assignment-ciccc-weather-fetch-vanilla-js",
+    "https://github.com/snamiki1212/open-weather-react-typescript-chakra",
   MY_GITHUB: "https://github.com/snamiki1212",
   MY_LINKEDIN: "https://www.linkedin.com/in/snamiki1212/",
   MY_AVATOR:
