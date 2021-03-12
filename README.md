@@ -4,13 +4,14 @@
 
 Weather App with [OpenWeatherMap](https://openweathermap.org/) API.
 
-👉 <a href="https://snamiki1212.github.io/open-weather-react-typescript-chakra/">Check it!</a>
+👉 <a href="https://snamiki1212.github.io/open-weather-react-typescript-chakra/">Try it!</a>
 
 ## Tech Stacks
 
 - React
 - TypeScript
-- ChakraUI
+- [UI] Chakra
+- [CI/CD] Github Actions / Github Pages
 
 ## TODO:
 
