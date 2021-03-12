@@ -13,6 +13,9 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  HStack,
+  Switch,
+  useColorMode,
 } from "@chakra-ui/react";
 
 const links = [
@@ -21,6 +24,7 @@ const links = [
 ];
 
 export function Navigation() {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box p={2} bg={"gray.50"} borderBottomColor="gray.100" borderWidth={1}>
       <Flex justifyContent="space-between">
@@ -57,16 +61,18 @@ export function Navigation() {
             </Link>
           ))}
           <Link href={SNS.THIS_GITHUB} _hover={{ textDecoration: "none" }}>
-            <Button
-              bg="gray.50"
-              color="gray.600"
-              _hover={{ bg: "gray.100" }}
-              borderWidth={1}
-              borderColor={"gray.300"}
-            >
+            <Button bg="gray.50" color="gray.600" _hover={{ bg: "gray.100" }}>
               GitHub
             </Button>
           </Link>
+          <HStack p={2} spacing={1}>
+            <Text>🌙</Text>
+            <Switch
+              isChecked={colorMode === "light"}
+              onChange={toggleColorMode}
+            />
+            <Text>☀️</Text>
+          </HStack>
           <Menu>
             <MenuButton as={Button} variant={"link"} cursor={"pointer"}>
               <Avatar size="sm" src={SNS.MY_AVATOR} />
