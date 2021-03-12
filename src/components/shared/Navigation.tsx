@@ -57,7 +57,15 @@ export function Navigation() {
             </Link>
           ))}
           <Link href={SNS.THIS_GITHUB} _hover={{ textDecoration: "none" }}>
-            <Button color="gray.600">GitHub</Button>
+            <Button
+              bg="gray.50"
+              color="gray.600"
+              _hover={{ bg: "gray.100" }}
+              borderWidth={1}
+              borderColor={"gray.300"}
+            >
+              GitHub
+            </Button>
           </Link>
           <Menu>
             <MenuButton as={Button} variant={"link"} cursor={"pointer"}>

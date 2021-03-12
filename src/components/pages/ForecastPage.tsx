@@ -79,7 +79,7 @@ export function ForecastPage() {
         </HStack>
 
         <HStack align="center" justifyContent="space-between">
-          <Text as="label">Days</Text>
+          <Text as="label">Items</Text>
           <NumberInput
             value={days}
             onChange={handleChangeDays}
