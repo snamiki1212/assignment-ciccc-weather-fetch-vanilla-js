@@ -4,24 +4,8 @@ import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <Box py={10} bg="pink.50" flexGrow={1}>
-      <Flex
-        align={"center"}
-        _before={{
-          content: '""',
-          borderBottom: "1px solid",
-          borderColor: "gray.50",
-          flexGrow: 1,
-          mr: 8,
-        }}
-        _after={{
-          content: '""',
-          borderBottom: "1px solid",
-          borderColor: "gray.50",
-          flexGrow: 1,
-          ml: 8,
-        }}
-      >
+    <Box py={30} bgGradient="linear(to-b, gray.50, pink.100)" flexGrow={1}>
+      <Flex justifyContent="center">
         <Logo />
       </Flex>
       <Text pt={6} fontSize={"sm"} textAlign={"center"} color="pink.700">
