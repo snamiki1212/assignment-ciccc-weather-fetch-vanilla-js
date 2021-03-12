@@ -16,6 +16,7 @@ import {
   Text,
   Spinner,
   Box,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 const DEFAULT_NUMBER_OS_DAYS = 7;
@@ -57,7 +58,7 @@ export function ForecastPage() {
   }, [days, cityName, loading]);
 
   return (
-    <Stack bg="gray.50" p={2}>
+    <Stack bg={useColorModeValue("gray.50", "gray.900")} p={2}>
       <Text
         align="center"
         bgClip="text"

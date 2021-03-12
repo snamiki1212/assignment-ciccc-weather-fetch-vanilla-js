@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "./Icon";
 import { ForecastWeather, CurrentWeather } from "../../types";
-import { Center, Box, Text } from "@chakra-ui/react";
+import { Center, Box, Text, useColorModeValue } from "@chakra-ui/react";
 
 const createDateFromUnixTime = (dt: number) => new Date(dt * 1_000); // REF: https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
 
@@ -15,8 +15,15 @@ export function WeatherItemCard({ item }: Props) {
   ).padStart(2, "0")}`;
 
   return (
-    <Center bg="gray.50">
-      <Box boxShadow="2xl" align="center" rounded={"lg"} p={12}>
+    <Center>
+      <Box
+        boxShadow="2xl"
+        align="center"
+        rounded={"lg"}
+        p={12}
+        borderWidth={1}
+        borderColor={useColorModeValue("gray.50", "gray.700")}
+      >
         <Box>
           <Icon icon={item.weather[0]?.icon} width={55} />
         </Box>

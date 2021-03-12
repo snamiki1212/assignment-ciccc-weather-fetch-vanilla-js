@@ -2,7 +2,15 @@ import React from "react";
 import { WeatherItemCard } from "../shared/WeatherItemCard";
 import { useCurrentWeather } from "../../hooks/useCurrentWeather";
 import { useToggle } from "../../hooks/useToggle";
-import { Box, Button, Input, Checkbox, HStack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Input,
+  Checkbox,
+  HStack,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 // TODO: modifable input
 const RETRY_DURATION_MILLISECOND = 1_000 * 2 * 60;
@@ -46,10 +54,11 @@ export function CurrentPage() {
     return () => clearInterval(handleInterval);
   }, [on, searchCurrentWeather]);
 
+  const bg = useColorModeValue("gray.50", "gray.900");
   if (!weather) return <div></div>;
 
   return (
-    <Box bg="gray.50" p={2}>
+    <Box bg={bg} p={2}>
       <Text
         align="center"
         bgClip="text"
@@ -73,7 +82,7 @@ export function CurrentPage() {
             Search
           </Button>
         </HStack>
-        <Checkbox onChange={handleToggle} isChecked={on}>
+        <Checkbox onChange={handleToggle} isChecked={on} colorScheme={"pink"}>
           Auto fetch
         </Checkbox>
       </Box>

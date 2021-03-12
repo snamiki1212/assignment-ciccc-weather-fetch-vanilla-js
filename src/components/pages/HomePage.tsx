@@ -1,6 +1,13 @@
 import React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
-import { Text, Box, Button, HStack, Link } from "@chakra-ui/react";
+import {
+  Text,
+  Box,
+  Button,
+  HStack,
+  Link,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { PATH } from "../../constants";
 
 const pages = [
@@ -19,8 +26,9 @@ const pages = [
 ] as const;
 
 export function HomePage() {
+  const boxBorderColor = useColorModeValue("gray.300", "gray.600");
   return (
-    <Box bg="gray.50" px={10}>
+    <Box bg={useColorModeValue("gray.50", "gray.900")} px={10}>
       <Box py={10}>
         <Text
           bgClip="text"
@@ -42,7 +50,7 @@ export function HomePage() {
           <Box
             key={idx}
             p={10}
-            borderColor={"gray.300"}
+            borderColor={boxBorderColor}
             borderWidth={1}
             borderRadius="10px"
           >

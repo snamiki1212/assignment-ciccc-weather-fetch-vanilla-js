@@ -1,10 +1,17 @@
 import React from "react";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <Box py={30} bgGradient="linear(to-b, gray.50, pink.100)" flexGrow={1}>
+    <Box
+      py={30}
+      bgGradient={useColorModeValue(
+        "linear(to-b, gray.50, pink.100)",
+        "linear(to-b, gray.900, pink.900)"
+      )}
+      flexGrow={1}
+    >
       <Flex justifyContent="center">
         <Logo />
       </Flex>

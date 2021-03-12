@@ -16,6 +16,7 @@ import {
   HStack,
   Switch,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 const links = [
@@ -25,8 +26,15 @@ const links = [
 
 export function Navigation() {
   const { colorMode, toggleColorMode } = useColorMode();
+  const navButtonBg = useColorModeValue("gray.50", "gray.900");
+  const navButtonHoverBg = useColorModeValue("pink.50", "pink.900");
   return (
-    <Box p={2} bg={"gray.50"} borderBottomColor="gray.100" borderWidth={1}>
+    <Box
+      p={2}
+      bg={useColorModeValue("gray.50", "gray.900")}
+      borderBottomColor={useColorModeValue("gray.100", "gray.700")}
+      borderWidth={1}
+    >
       <Flex justifyContent="space-between">
         <Box as={"nav"}>
           <Link
@@ -37,7 +45,7 @@ export function Navigation() {
             <Logo />
           </Link>
         </Box>
-        <Flex alignItems="center">
+        <HStack>
           {links.map((link) => (
             <Link
               as={ReactRouterLink}
@@ -45,9 +53,9 @@ export function Navigation() {
               _hover={{ textDecoration: "none" }}
             >
               <Button
-                bg={"gray.50"}
+                bg={navButtonBg}
                 _hover={{
-                  bg: "pink.50",
+                  bg: navButtonHoverBg,
                 }}
               >
                 <Text
@@ -61,7 +69,11 @@ export function Navigation() {
             </Link>
           ))}
           <Link href={SNS.THIS_GITHUB} _hover={{ textDecoration: "none" }}>
-            <Button bg="gray.50" color="gray.500" _hover={{ bg: "gray.100" }}>
+            <Button
+              bg={useColorModeValue("gray.50", "gray.900")}
+              color="gray.500"
+              _hover={{ bg: useColorModeValue("gray.100", "gray.800") }}
+            >
               GitHub
             </Button>
           </Link>
@@ -97,7 +109,7 @@ export function Navigation() {
               </MenuItem>
             </MenuList>
           </Menu>
-        </Flex>
+        </HStack>
       </Flex>
     </Box>
   );
