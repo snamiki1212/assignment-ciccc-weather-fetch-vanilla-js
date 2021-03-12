@@ -1,8 +1,10 @@
 # open-weather-react-typescript-chakra
 
-<a href="#">![rec1](https://user-images.githubusercontent.com/26793088/110871805-e6d55780-8283-11eb-953e-4507493bb4b6.gif)</a>
+<a href="https://snamiki1212.github.io/open-weather-react-typescript-chakra/">![rec1](https://user-images.githubusercontent.com/26793088/110871805-e6d55780-8283-11eb-953e-4507493bb4b6.gif)</a>
 
 Weather App with [OpenWeatherMap](https://openweathermap.org/) API.
+
+👉 <a href="https://snamiki1212.github.io/open-weather-react-typescript-chakra/">Check it!</a>
 
 ## Tech Stacks
 
