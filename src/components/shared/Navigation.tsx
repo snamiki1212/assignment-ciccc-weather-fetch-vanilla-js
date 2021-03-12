@@ -61,15 +61,16 @@ export function Navigation() {
             </Link>
           ))}
           <Link href={SNS.THIS_GITHUB} _hover={{ textDecoration: "none" }}>
-            <Button bg="gray.50" color="gray.600" _hover={{ bg: "gray.100" }}>
+            <Button bg="gray.50" color="gray.500" _hover={{ bg: "gray.100" }}>
               GitHub
             </Button>
           </Link>
-          <HStack p={2} spacing={1}>
+          <HStack p={2} spacing={1.5}>
             <Text>🌙</Text>
             <Switch
               isChecked={colorMode === "light"}
               onChange={toggleColorMode}
+              colorScheme="pink"
             />
             <Text>☀️</Text>
           </HStack>
@@ -78,10 +79,20 @@ export function Navigation() {
               <Avatar size="sm" src={SNS.MY_AVATOR} />
             </MenuButton>
             <MenuList>
-              <MenuItem as={Link} isExternal href={SNS.MY_GITHUB}>
+              <MenuItem
+                as={Link}
+                isExternal
+                href={SNS.MY_GITHUB}
+                _hover={{ textDecor: "none" }}
+              >
                 GitHub
               </MenuItem>
-              <MenuItem as={Link} isExternal href={SNS.MY_LINKEDIN}>
+              <MenuItem
+                as={Link}
+                isExternal
+                href={SNS.MY_LINKEDIN}
+                _hover={{ textDecor: "none" }}
+              >
                 Linkedin
               </MenuItem>
             </MenuList>
