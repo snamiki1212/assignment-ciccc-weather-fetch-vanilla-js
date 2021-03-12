@@ -24,3 +24,7 @@ Weather App with [OpenWeatherMap](https://openweathermap.org/) API.
 $ yarn
 $ yarn start
 ```
+
+## License
+
+[MIT](https://github.com/snamiki1212/open-weather-react-typescript-chakra/blob/main/LICENSE)
