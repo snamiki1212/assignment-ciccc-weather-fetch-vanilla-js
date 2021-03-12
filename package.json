@@ -2,7 +2,7 @@
   "name": "openweather",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/snamiki1212/open-weather-react-typescript-chakra",
+  "homepage": ".",
   "dependencies": {
     "@chakra-ui/react": "^1.3.4",
     "@emotion/react": "^11.1.5",
