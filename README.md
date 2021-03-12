@@ -17,7 +17,6 @@ Weather App with [OpenWeatherMap](https://openweathermap.org/) API.
 
 - TODO: Responsive design
 - TODO: Dark mode
-- TODO: Routing problem(URL)
 
 ## Installation
 
