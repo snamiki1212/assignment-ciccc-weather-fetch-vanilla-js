@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/snamiki1212/open-weather-react-typescript-chakra/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/snamiki1212/open-weather-react-typescript-chakra/static/js/main.929f2c9f.chunk.js",
-    "main.js.map": "/snamiki1212/open-weather-react-typescript-chakra/static/js/main.929f2c9f.chunk.js.map",
-    "runtime-main.js": "/snamiki1212/open-weather-react-typescript-chakra/static/js/runtime-main.40344af5.js",
-    "runtime-main.js.map": "/snamiki1212/open-weather-react-typescript-chakra/static/js/runtime-main.40344af5.js.map",
-    "static/js/2.a160437c.chunk.js": "/snamiki1212/open-weather-react-typescript-chakra/static/js/2.a160437c.chunk.js",
-    "static/js/2.a160437c.chunk.js.map": "/snamiki1212/open-weather-react-typescript-chakra/static/js/2.a160437c.chunk.js.map",
-    "static/js/3.5db991ad.chunk.js": "/snamiki1212/open-weather-react-typescript-chakra/static/js/3.5db991ad.chunk.js",
-    "static/js/3.5db991ad.chunk.js.map": "/snamiki1212/open-weather-react-typescript-chakra/static/js/3.5db991ad.chunk.js.map",
-    "index.html": "/snamiki1212/open-weather-react-typescript-chakra/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/snamiki1212/open-weather-react-typescript-chakra/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.a160437c.chunk.js.LICENSE.txt": "/snamiki1212/open-weather-react-typescript-chakra/static/js/2.a160437c.chunk.js.LICENSE.txt"
+    "main.css": "./static/css/main.6dea0f05.chunk.css",
+    "main.js": "./static/js/main.929f2c9f.chunk.js",
+    "main.js.map": "./static/js/main.929f2c9f.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.6717c63e.js",
+    "runtime-main.js.map": "./static/js/runtime-main.6717c63e.js.map",
+    "static/js/2.a160437c.chunk.js": "./static/js/2.a160437c.chunk.js",
+    "static/js/2.a160437c.chunk.js.map": "./static/js/2.a160437c.chunk.js.map",
+    "static/js/3.5db991ad.chunk.js": "./static/js/3.5db991ad.chunk.js",
+    "static/js/3.5db991ad.chunk.js.map": "./static/js/3.5db991ad.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "./static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.a160437c.chunk.js.LICENSE.txt": "./static/js/2.a160437c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.40344af5.js",
+    "static/js/runtime-main.6717c63e.js",
     "static/js/2.a160437c.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
     "static/js/main.929f2c9f.chunk.js"
