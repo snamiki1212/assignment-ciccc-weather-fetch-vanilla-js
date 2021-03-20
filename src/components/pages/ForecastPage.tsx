@@ -2,6 +2,7 @@ import React from "react";
 import { fetchForecastWeather } from "../../api/weather";
 import { ForecastWeather } from "../../types";
 import { ForecastSection } from "../forecast/ForecastSection";
+import { useInput } from "../../hooks/useInput";
 
 import {
   NumberInput,
@@ -24,15 +25,6 @@ const DEFAULT_CITY_NAME = "Tokyo";
 const MAX_DAYS = 16;
 const inRange = (num: number) => num >= 0 && num <= MAX_DAYS;
 
-const useInputCityName = (defaultValue = "") => {
-  // TODO: not using useState, but useRef
-  const [cityName, setCityName] = React.useState<string>(defaultValue);
-  const handleChangeCityName = React.useCallback((event) => {
-    setCityName(event.target.value);
-  }, []);
-  return [cityName, handleChangeCityName] as const;
-};
-
 const useInputDays = () => {
   // TODO: not using useState, but useRef
   const [days, setDays] = React.useState<number>(DEFAULT_NUMBER_OS_DAYS);
@@ -46,7 +38,7 @@ const useInputDays = () => {
 };
 
 export function ForecastPage() {
-  const [cityName, handleChangeCityName] = useInputCityName(DEFAULT_CITY_NAME);
+  const [cityName, handleChangeCityName] = useInput(DEFAULT_CITY_NAME);
   const [days, handleChangeDays] = useInputDays();
 
   const [forecast, setForecst] = React.useState<ForecastWeather | undefined>(
