@@ -6,7 +6,7 @@ import { WeatherItemCard } from "../shared/WeatherItemCard";
 export function ForecastSection({ forecast }: { forecast?: ForecastWeather }) {
   if (!forecast) return null;
   return (
-    <Box p={4}>
+    <Box p={7}>
       <Box align="center">
         <Text
           bgClip="text"
@@ -18,7 +18,13 @@ export function ForecastSection({ forecast }: { forecast?: ForecastWeather }) {
         </Text>
       </Box>
       <Box align="center">
-        <HStack maxWidth="100vw" overflowX="scroll" spacing={10} p={30}>
+        <HStack
+          maxWidth="100vw"
+          overflowX="scroll"
+          spacing={10}
+          px={30}
+          py={70}
+        >
           {forecast.list.map((item, idx) => (
             <WeatherItemCard item={item} key={idx} />
           ))}

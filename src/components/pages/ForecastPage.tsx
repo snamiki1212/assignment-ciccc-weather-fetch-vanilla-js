@@ -22,7 +22,7 @@ import {
 const DEFAULT_NUMBER_OS_DAYS = 7;
 const DEFAULT_CITY_NAME = "Tokyo";
 const MAX_DAYS = 16;
-const isRange = (num: number) => num >= 0 && num <= MAX_DAYS;
+const inRange = (num: number) => num >= 0 && num <= MAX_DAYS;
 
 export function ForecastPage() {
   const [cityName, setCityName] = React.useState<string>(DEFAULT_CITY_NAME);
@@ -39,14 +39,14 @@ export function ForecastPage() {
   const handleChangeDays = React.useCallback((valueStr) => {
     const _days = parseInt(valueStr || 0);
     if (isNaN(_days)) return;
-    if (!isRange(_days)) return;
+    if (!inRange(_days)) return;
     setDays(_days);
   }, []);
 
   const handleClick = React.useCallback(() => {
     if (loading) return;
     setLoading(true);
-    const _days = isRange(days) ? days : DEFAULT_NUMBER_OS_DAYS;
+    const _days = inRange(days) ? days : DEFAULT_NUMBER_OS_DAYS;
     console.log("cityname", cityName, "days", _days);
     fetchForecastWeather(cityName, _days)
       .then((data) => {
@@ -70,22 +70,28 @@ export function ForecastPage() {
       </Text>
       <Stack p={10} m={2} borderRadius={10} borderWidth={1}>
         <HStack align="center" justifyContent="space-between">
-          <Text as="label">City Name</Text>
+          <Text as="label" color="pink.800">
+            City Name
+          </Text>
           <Input
             value={cityName}
             onChange={handleChangeCityName}
             placeholder="e.g. Tokyo"
             width="80%"
+            color="pink.800"
           />
         </HStack>
 
         <HStack align="center" justifyContent="space-between">
-          <Text as="label">Items</Text>
+          <Text as="label" color="pink.800">
+            Items
+          </Text>
           <NumberInput
             value={days}
             onChange={handleChangeDays}
             placeholder="e.g. 0~16"
             width="80%"
+            color="pink.800"
           >
             <NumberInputField />
             <NumberInputStepper>
