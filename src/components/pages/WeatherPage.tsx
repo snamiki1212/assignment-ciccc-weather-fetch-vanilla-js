@@ -15,18 +15,23 @@ import {
 // TODO: modifable input
 const RETRY_DURATION_MILLISECOND = 1_000 * 2 * 60;
 
-export function WeatherPage() {
+const useInput = (defaultValue = "") => {
   // TODO: not using useState but to handle using useRef because of reducing re-rendering
-  const [inputed, setInputed] = React.useState<string>("Vancouver");
+  const [inputed, setInputed] = React.useState<string>(defaultValue);
+  const handleChange = React.useCallback((event) => {
+    setInputed(event.target.value);
+  }, []);
+  return [inputed, handleChange] as const;
+};
+
+export function WeatherPage() {
+  const [inputed, handleChange] = useInput("Vancouver");
+
   const [
     lastSearchedCityName,
     setLastSearchedCityName,
   ] = React.useState<string>(inputed);
   const { weather, searchWeather } = useCurrentWeather();
-
-  const handleChange = React.useCallback((event) => {
-    setInputed(event.target.value);
-  }, []);
 
   const handleClick = React.useCallback(() => {
     console.log("[handleClick]");

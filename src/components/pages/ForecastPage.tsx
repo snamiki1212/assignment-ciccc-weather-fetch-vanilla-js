@@ -24,9 +24,9 @@ const DEFAULT_CITY_NAME = "Tokyo";
 const MAX_DAYS = 16;
 const inRange = (num: number) => num >= 0 && num <= MAX_DAYS;
 
-const useInputCityName = () => {
+const useInputCityName = (defaultValue = "") => {
   // TODO: not using useState, but useRef
-  const [cityName, setCityName] = React.useState<string>(DEFAULT_CITY_NAME);
+  const [cityName, setCityName] = React.useState<string>(defaultValue);
   const handleChangeCityName = React.useCallback((event) => {
     setCityName(event.target.value);
   }, []);
@@ -46,7 +46,7 @@ const useInputDays = () => {
 };
 
 export function ForecastPage() {
-  const [cityName, handleChangeCityName] = useInputCityName();
+  const [cityName, handleChangeCityName] = useInputCityName(DEFAULT_CITY_NAME);
   const [days, handleChangeDays] = useInputDays();
 
   const [forecast, setForecst] = React.useState<ForecastWeather | undefined>(
