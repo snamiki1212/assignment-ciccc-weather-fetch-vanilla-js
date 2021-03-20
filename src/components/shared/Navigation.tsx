@@ -20,9 +20,9 @@ import {
 } from "@chakra-ui/react";
 
 const links = [
-  { text: "Current", to: PATH.current },
+  { text: "Weather", to: PATH.current },
   { text: "Forecast", to: PATH.forecast },
-];
+] as const;
 
 export function Navigation() {
   const { colorMode, toggleColorMode } = useColorMode();

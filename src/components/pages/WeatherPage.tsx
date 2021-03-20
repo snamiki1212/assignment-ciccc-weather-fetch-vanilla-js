@@ -15,7 +15,7 @@ import {
 // TODO: modifable input
 const RETRY_DURATION_MILLISECOND = 1_000 * 2 * 60;
 
-export function CurrentPage() {
+export function WeatherPage() {
   // TODO: not using useState but to handle using useRef because of reducing re-rendering
   const [inputed, setInputed] = React.useState<string>("Vancouver");
   const [
