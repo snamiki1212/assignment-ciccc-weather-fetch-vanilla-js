@@ -44,28 +44,22 @@ export function ForecastPage() {
       </Text>
       <Stack p={10} m={2} borderRadius={10} borderWidth={1}>
         <HStack align="center" justifyContent="space-between">
-          <Text as="label" color="pink.800">
-            City Name
-          </Text>
+          <Text as="label">City Name</Text>
           <Input
             value={cityName}
             onChange={handleChangeCityName}
             placeholder="e.g. Tokyo"
             width="80%"
-            color="pink.800"
           />
         </HStack>
 
         <HStack align="center" justifyContent="space-between">
-          <Text as="label" color="pink.800">
-            Items
-          </Text>
+          <Text as="label">Items</Text>
           <NumberInput
             value={days}
             onChange={handleChangeDays}
             placeholder="e.g. 0~16"
             width="80%"
-            color="pink.800"
           >
             <NumberInputField />
             <NumberInputStepper>

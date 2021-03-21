@@ -12,3 +12,5 @@ export const SNS = {
   MY_AVATOR:
     "https://avatars.githubusercontent.com/u/26793088?s=460&u=7cd8858ef043c328a3b729553c5ad81498bd65c4&v=4",
 } as const;
+
+export const COPYRIGHT_TEXT = "© 2021 Shun Namiki";

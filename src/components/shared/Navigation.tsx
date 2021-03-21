@@ -19,9 +19,14 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-const links = [
+const PAGES = [
   { text: "Weather", to: PATH.current },
   { text: "Forecast", to: PATH.forecast },
+] as const;
+
+const SNS_LINKS = [
+  { text: "GitHub", href: SNS.MY_GITHUB },
+  { text: "Linkedin", href: SNS.MY_LINKEDIN },
 ] as const;
 
 export function Navigation() {
@@ -46,7 +51,7 @@ export function Navigation() {
           </Link>
         </Box>
         <HStack>
-          {links.map((link, idx) => (
+          {PAGES.map((link, idx) => (
             <Link
               as={ReactRouterLink}
               to={link.to}
@@ -92,22 +97,17 @@ export function Navigation() {
               <Avatar size="sm" src={SNS.MY_AVATOR} />
             </MenuButton>
             <MenuList>
-              <MenuItem
-                as={Link}
-                isExternal
-                href={SNS.MY_GITHUB}
-                _hover={{ textDecor: "none" }}
-              >
-                GitHub
-              </MenuItem>
-              <MenuItem
-                as={Link}
-                isExternal
-                href={SNS.MY_LINKEDIN}
-                _hover={{ textDecor: "none" }}
-              >
-                Linkedin
-              </MenuItem>
+              {SNS_LINKS.map((snsLink, idx) => (
+                <MenuItem
+                  key={idx}
+                  as={Link}
+                  isExternal
+                  href={snsLink.href}
+                  _hover={{ textDecor: "none" }}
+                >
+                  {snsLink.text}
+                </MenuItem>
+              ))}
             </MenuList>
           </Menu>
         </HStack>
