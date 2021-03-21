@@ -28,6 +28,7 @@ export function ForecastPage() {
   const handleClick = React.useMemo(() => createFetch({ days, cityName }), [
     days,
     cityName,
+    createFetch,
   ]);
 
   return (

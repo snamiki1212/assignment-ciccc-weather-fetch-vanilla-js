@@ -1,7 +1,7 @@
 import React from "react";
-import { fetchForecastWeather } from "../api/weather";
+import { fetchForecastWeather } from "../logics/api";
 import { ForecastWeather } from "../types";
-import { inRange } from "../api/utils";
+import { inRange } from "../logics/utils";
 
 const DEFAULT_NUMBER_OS_DAYS = 7;
 

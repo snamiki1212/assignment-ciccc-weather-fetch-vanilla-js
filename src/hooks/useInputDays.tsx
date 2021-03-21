@@ -1,5 +1,5 @@
 import React from "react";
-import { inRange } from "../api/utils";
+import { inRange } from "../logics/utils";
 
 export const useInputDays = (defaultNumberOfDays = 7) => {
   // TODO: not using useState, but useRef

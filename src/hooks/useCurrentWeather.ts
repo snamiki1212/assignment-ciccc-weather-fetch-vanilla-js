@@ -1,6 +1,6 @@
 import React from "react";
 import { CurrentWeather } from "../types";
-import { searchCurrentWeather } from "../api/weather";
+import { searchCurrentWeather } from "../logics/api";
 
 const DEFAULT_CITY_NAME = "vancouver";
 
