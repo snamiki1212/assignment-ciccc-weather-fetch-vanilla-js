@@ -37,28 +37,41 @@ const useInputDays = () => {
   return [days, handleChangeDays] as const;
 };
 
-export function ForecastPage() {
-  const [cityName, handleChangeCityName] = useInput(DEFAULT_CITY_NAME);
-  const [days, handleChangeDays] = useInputDays();
-
+const useFetchForecast = () => {
   const [forecast, setForecst] = React.useState<ForecastWeather | undefined>(
     undefined
   );
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  const handleClick = React.useCallback(() => {
-    if (loading) return;
-    setLoading(true);
-    const _days = inRange(days) ? days : DEFAULT_NUMBER_OS_DAYS;
-    console.log("cityname", cityName, "days", _days);
-    fetchForecastWeather(cityName, _days)
-      .then((data) => {
-        if (!data) return;
-        setForecst(data);
-      })
-      .catch((err) => console.log("oh, err", err))
-      .finally(() => setLoading(false));
-  }, [days, cityName, loading]);
+  const createFetch = React.useCallback(
+    ({ days, cityName }) => () => {
+      if (loading) return;
+      setLoading(true);
+      const _days = inRange(days) ? days : DEFAULT_NUMBER_OS_DAYS;
+      console.log("cityname", cityName, "days", _days);
+      fetchForecastWeather(cityName, _days)
+        .then((data) => {
+          if (!data) return;
+          setForecst(data);
+        })
+        .catch((err) => console.log("oh, err", err))
+        .finally(() => setLoading(false));
+    },
+    [loading]
+  );
+
+  return {
+    loading,
+    forecast,
+    createFetch,
+  };
+};
+
+export function ForecastPage() {
+  const [cityName, handleChangeCityName] = useInput(DEFAULT_CITY_NAME);
+  const [days, handleChangeDays] = useInputDays();
+  const { loading, forecast, createFetch } = useFetchForecast();
+  const handleClick = createFetch({ days, cityName });
 
   return (
     <Stack bg={useColorModeValue("gray.50", "gray.900")} p={2}>
