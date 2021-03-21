@@ -1,9 +1,8 @@
 import React from "react";
-import { fetchForecastWeather } from "../../api/weather";
-import { ForecastWeather } from "../../types";
 import { ForecastSection } from "../forecast/ForecastSection";
 import { useInput } from "../../hooks/useInput";
-
+import { useFetchForecast } from "../../hooks/useFetchForecast";
+import { useInputDays } from "../../hooks/useInputDays";
 import {
   NumberInput,
   NumberInputField,
@@ -20,58 +19,16 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-const DEFAULT_NUMBER_OS_DAYS = 7;
 const DEFAULT_CITY_NAME = "Tokyo";
-const MAX_DAYS = 16;
-const inRange = (num: number) => num >= 0 && num <= MAX_DAYS;
-
-const useInputDays = () => {
-  // TODO: not using useState, but useRef
-  const [days, setDays] = React.useState<number>(DEFAULT_NUMBER_OS_DAYS);
-  const handleChangeDays = React.useCallback((valueStr) => {
-    const _days = parseInt(valueStr || 0);
-    if (isNaN(_days)) return;
-    if (!inRange(_days)) return;
-    setDays(_days);
-  }, []);
-  return [days, handleChangeDays] as const;
-};
-
-const useFetchForecast = () => {
-  const [forecast, setForecst] = React.useState<ForecastWeather | undefined>(
-    undefined
-  );
-  const [loading, setLoading] = React.useState<boolean>(false);
-
-  const createFetch = React.useCallback(
-    ({ days, cityName }) => () => {
-      if (loading) return;
-      setLoading(true);
-      const _days = inRange(days) ? days : DEFAULT_NUMBER_OS_DAYS;
-      console.log("cityname", cityName, "days", _days);
-      fetchForecastWeather(cityName, _days)
-        .then((data) => {
-          if (!data) return;
-          setForecst(data);
-        })
-        .catch((err) => console.log("oh, err", err))
-        .finally(() => setLoading(false));
-    },
-    [loading]
-  );
-
-  return {
-    loading,
-    forecast,
-    createFetch,
-  };
-};
 
 export function ForecastPage() {
   const [cityName, handleChangeCityName] = useInput(DEFAULT_CITY_NAME);
   const [days, handleChangeDays] = useInputDays();
   const { loading, forecast, createFetch } = useFetchForecast();
-  const handleClick = createFetch({ days, cityName });
+  const handleClick = React.useMemo(() => createFetch({ days, cityName }), [
+    days,
+    cityName,
+  ]);
 
   return (
     <Stack bg={useColorModeValue("gray.50", "gray.900")} p={2}>
