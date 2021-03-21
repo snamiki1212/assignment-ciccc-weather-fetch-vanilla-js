@@ -1,6 +1,6 @@
 import React from "react";
 import { WeatherItemCard } from "../shared/WeatherItemCard";
-import { useCurrentWeather } from "../../hooks/useCurrentWeather";
+import { useFetchWeather } from "../../hooks/useFetchWeather";
 import { useToggle } from "../../hooks/useToggle";
 import { useInput } from "../../hooks/useInput";
 import { useSetInterval } from "../../hooks/useSetInterval";
@@ -19,7 +19,7 @@ const DEFAULT_CITY_NAME = "Vancouver";
 export function WeatherPage() {
   const [inputed, handleChange] = useInput(DEFAULT_CITY_NAME);
   const { on, toggle: handleToggle } = useToggle();
-  const { weather, searchWeather } = useCurrentWeather();
+  const { weather, searchWeather } = useFetchWeather();
   const [
     lastSearchedCityName,
     setLastSearchedCityName,

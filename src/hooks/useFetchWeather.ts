@@ -4,7 +4,7 @@ import { searchCurrentWeather } from "../logics/api";
 
 const DEFAULT_CITY_NAME = "vancouver";
 
-export const useCurrentWeather = () => {
+export const useFetchWeather = () => {
   const [weather, setWeather] = React.useState<CurrentWeather | undefined>();
 
   const searchWeather = React.useCallback((cityName = DEFAULT_CITY_NAME) => {
