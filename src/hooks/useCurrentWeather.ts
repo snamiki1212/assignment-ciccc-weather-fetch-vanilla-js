@@ -9,7 +9,6 @@ export const useCurrentWeather = () => {
 
   const searchWeather = React.useCallback((cityName = DEFAULT_CITY_NAME) => {
     return searchCurrentWeather(cityName).then((weatherObj) => {
-      console.log("[after search]");
       if (!weatherObj) return;
       setWeather(weatherObj);
     });

@@ -16,7 +16,6 @@ export const useFetchForecast = () => {
       if (loading) return;
       setLoading(true);
       const _days = inRange(days) ? days : DEFAULT_NUMBER_OS_DAYS;
-      console.log("cityname", cityName, "days", _days);
       fetchForecastWeather(cityName, _days)
         .then((data) => {
           if (!data) return;

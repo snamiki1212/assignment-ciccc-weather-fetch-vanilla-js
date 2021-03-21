@@ -3,6 +3,7 @@ import { WeatherItemCard } from "../shared/WeatherItemCard";
 import { useCurrentWeather } from "../../hooks/useCurrentWeather";
 import { useToggle } from "../../hooks/useToggle";
 import { useInput } from "../../hooks/useInput";
+import { useSetInterval } from "../../hooks/useSetInterval";
 import {
   Box,
   Button,
@@ -13,43 +14,30 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-// TODO: modifable input
-const RETRY_DURATION_MILLISECOND = 1_000 * 2 * 60;
+const DEFAULT_CITY_NAME = "Vancouver";
 
 export function WeatherPage() {
-  const [inputed, handleChange] = useInput("Vancouver");
-
+  const [inputed, handleChange] = useInput(DEFAULT_CITY_NAME);
+  const { on, toggle: handleToggle } = useToggle();
+  const { weather, searchWeather } = useCurrentWeather();
   const [
     lastSearchedCityName,
     setLastSearchedCityName,
   ] = React.useState<string>(inputed);
-  const { weather, searchWeather } = useCurrentWeather();
 
   const handleClick = React.useCallback(() => {
-    console.log("[handleClick]");
     searchWeather(inputed).then(() => setLastSearchedCityName(inputed));
   }, [inputed, searchWeather]);
-
-  const { on, toggle: handleToggle } = useToggle();
-
-  React.useEffect(() => {
-    console.log("[useEffect:initial-load-feature]");
-    searchWeather();
-  }, [searchWeather]);
 
   const searchCurrentWeather = React.useCallback(() => {
     searchWeather(lastSearchedCityName);
   }, [searchWeather, lastSearchedCityName]);
 
   React.useEffect(() => {
-    console.log("[useEffect:interval-feature]");
-    if (!on) return;
-    const handleInterval = setInterval(
-      searchCurrentWeather,
-      RETRY_DURATION_MILLISECOND
-    );
-    return () => clearInterval(handleInterval);
-  }, [on, searchCurrentWeather]);
+    searchWeather();
+  }, [searchWeather]);
+
+  useSetInterval({ on, callback: searchCurrentWeather });
 
   const bg = useColorModeValue("gray.50", "gray.900");
   if (!weather) return <div></div>;

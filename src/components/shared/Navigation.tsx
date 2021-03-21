@@ -46,11 +46,12 @@ export function Navigation() {
           </Link>
         </Box>
         <HStack>
-          {links.map((link) => (
+          {links.map((link, idx) => (
             <Link
               as={ReactRouterLink}
               to={link.to}
               _hover={{ textDecoration: "none" }}
+              key={idx}
             >
               <Button
                 bg={navButtonBg}
