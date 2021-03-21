@@ -18,7 +18,7 @@ export function Footer() {
       <Text pt={6} fontSize={"sm"} textAlign={"center"} color="pink.700">
         © 2021 Shun Namiki
         <br />
-        This page is created by React / TypeScript / ChakraUI.
+        This page is created with React / TypeScript / ChakraUI.
       </Text>
     </Box>
   );
